@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -14,6 +16,7 @@ public class Supplier {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank(message = "Nome é obrigatório")
     private String name;
 
@@ -35,4 +38,7 @@ public class Supplier {
 
     @NotBlank(message = "Email é obrigatório")
     private String email;
+
+    @OneToMany(mappedBy = "fornecedor")
+    private List<Product> produtos;
     }
