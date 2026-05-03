@@ -1,6 +1,6 @@
 package com.example.SistemaComercial.demo.controller;
 
-import com.example.SistemaComercial.demo.model.Supplier;
+import com.example.SistemaComercial.demo.DTO.SupplierDTO;
 import com.example.SistemaComercial.demo.service.SupplierService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,36 +9,44 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin (origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/supplier")
 public class SupplierController {
+
     @Autowired
     private SupplierService supplierService;
 
-    @PostMapping("/supplier")
-    public Supplier createSupplier(@RequestBody Supplier supplier) {
-        return supplierService.save(supplier);
+    @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody @Valid SupplierDTO dto) {
+        try {
+            return ResponseEntity.ok(supplierService.create(dto));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @GetMapping("/supplier")
-    public List<Supplier> findAllSupplier(){
-        return supplierService.findAll();
+    @PutMapping("/{id}")
+    public ResponseEntity<SupplierDTO> update(
+            @PathVariable Long id,
+            @RequestBody SupplierDTO dto) {
+
+        return ResponseEntity.ok(supplierService.update(id, dto));
     }
 
-    @GetMapping("/supplier/{id}")
-    public ResponseEntity<Supplier> getSupplierById(@PathVariable Long id) {
-        Supplier supplier = supplierService.findById(id);
-        return ResponseEntity.ok(supplier);
+    @GetMapping("/findAll")
+    public ResponseEntity<List<SupplierDTO>> findAll(){
+        return ResponseEntity.ok(supplierService.findAll());
     }
 
-    @PutMapping("/supplier/{id}")
-    public ResponseEntity<Supplier> updateSupplier(@Valid @RequestBody Supplier supplierUpdated){
-        return ResponseEntity.notFound().build();
+    @GetMapping("/{id}")
+    public ResponseEntity<SupplierDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(supplierService.findById(id));
     }
 
-    @DeleteMapping("/supplier")
-    public ResponseEntity<Void> deleteSupplier(@Valid @RequestBody Supplier supplier){
-        return ResponseEntity.ok().build();
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        supplierService.deleteSupplier(id);
+        return ResponseEntity.noContent().build();
     }
 }

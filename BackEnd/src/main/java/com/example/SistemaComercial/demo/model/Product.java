@@ -1,40 +1,55 @@
 package com.example.SistemaComercial.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.constraints.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
 
-    @NotBlank(message = "Nome é obrigatório")
+    @Column(name="name")
+    @NotBlank(message = "The name and required")
     private String name;
 
+    @Column(name="description")
     private String description;
 
-    @NotBlank(message = "Preço é obrigatório")
-    @Min(value = 0, message = "O price não pode ser negativo")
-    @Positive(message = "O valor deve ser maior que zero")
-    private Number price;
+    @Column(name="price", nullable = false)
+    @NotNull(message = "The price and required")
+    @Positive(message = "The value must be greater than zero.")
+    private Double price;
 
-    @NotBlank(message = "A quantiade é obrigatório")
-    @Min(value = 1, message = " deve ser no mínimo 1")
-    @PositiveOrZero(message = "O valor não pode ser negativo")
-    private int amount;
+    @Column(name="stock_quantity",  nullable = false)
+    @NotNull(message = "The stock_quantity and required")
+    @Min(value = 0, message = "The value cannot be negative.")
+    private Integer stock_quantity;
 
     @ManyToOne
-    @JoinColumn(name = "fornecedor_id")
+    @JoinColumn(name = "supplier_id")
+    @JsonIgnore
     private Supplier supplier;
+
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+    private List<OrderItem> items;
+
+    public boolean getStock() {
+        return stock_quantity > 0;
+    }
+    public void setStock(int i) {
+        this.stock_quantity = i;
+    }
 }

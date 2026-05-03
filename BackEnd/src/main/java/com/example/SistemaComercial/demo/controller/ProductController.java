@@ -1,7 +1,7 @@
 package com.example.SistemaComercial.demo.controller;
 
-import com.example.SistemaComercial.demo.model.Product;
-import com.example.SistemaComercial.demo.repository.ProductRepository;
+import com.example.SistemaComercial.demo.DTO.ProductDTO;
+import com.example.SistemaComercial.demo.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,30 +15,34 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
 
-    @GetMapping("/product")
-    public List<Product> getProducts() {
-        return productRepository.findAll();
+    @PostMapping("/create")
+    public ResponseEntity<ProductDTO> create(@RequestBody @Valid ProductDTO dto) {
+        return ResponseEntity.ok(productService.create(dto));
     }
 
-    @PostMapping("/product")
-    public Product saveProduct(@RequestBody Product product) {
-        return productRepository.save(product);
+    @GetMapping("/findAll")
+    public ResponseEntity<List<ProductDTO>> findAll() {
+        return ResponseEntity.ok(productService.findAll());
     }
 
-    @GetMapping("/product/{id}")
-    public Product getProduct(@PathVariable Long id) {
-        return productRepository.findById(id).get();
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.findById(id));
     }
 
-    @PutMapping("/product")
-    public Product updateProduct(@RequestBody Product product) {
-        return productRepository.save(product);
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductDTO> update(
+            @PathVariable Long id,
+            @RequestBody ProductDTO dto) {
+
+        return ResponseEntity.ok(productService.update(id, dto));
     }
 
-    @DeleteMapping("/product")
-    public ResponseEntity<Void> deleteProduct(@Valid @RequestBody Product product){
-        return ResponseEntity.ok().build();
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        productService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
