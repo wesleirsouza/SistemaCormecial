@@ -89,4 +89,10 @@ public class OrderService {
 
         return OrderMapper.toDTO(order);
     }
+
+    public void deleteById(Long id) {
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+        orderRepository.delete(order);
+    }
 }
