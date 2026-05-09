@@ -1,1 +1,211 @@
-<p>create-supplier works!</p>
+<section class="modal-content border-0 shadow">
+
+  <!-- Cabeçalho -->
+  <header class="modal-header bg-primary text-white">
+    <h5 class="modal-title">
+      Cadastro de Fornecedor
+    </h5>
+
+    <button
+      type="button"
+      class="btn-close btn-close-white"
+      data-bs-dismiss="modal"
+      aria-label="Fechar">
+    </button>
+  </header>
+
+  <!-- Conteúdo -->
+  <main class="modal-body">
+
+    <form class="row g-3">
+
+      <!-- Dados do fornecedor -->
+      <section class="col-12">
+
+        <header class="mb-3">
+          <h6 class="text-primary border-bottom pb-2">
+            Dados do Fornecedor
+          </h6>
+        </header>
+
+        <div class="row g-3">
+
+          <article class="col-md-6">
+            <label for="name" class="form-label">
+              Nome do Fornecedor
+            </label>
+
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              placeholder="Digite o nome do fornecedor"
+              [(ngModel)]="newSupplier.name"
+              name="name" />
+          </article>
+
+          <article class="col-md-6">
+            <label for="cnpj" class="form-label">
+              CNPJ
+            </label>
+
+            <input
+              type="text"
+              id="cnpj"
+              class="form-control"
+              placeholder="Digite o CNPJ"
+              [(ngModel)]="newSupplier.cnpjCpf"
+              name="cnpj" />
+          </article>
+
+          <article class="col-md-6">
+            <label for="rg" class="form-label">
+              RG
+            </label>
+
+            <input
+              type="text"
+              id="rg"
+              class="form-control"
+              placeholder="Digite o RG"
+              [(ngModel)]="newSupplier.rg"
+              name="rg" />
+          </article>
+
+          <article class="col-md-6">
+            <label for="dateOfBirth" class="form-label">
+              Data de Nascimento
+            </label>
+
+            <input
+              type="date"
+              id="dateOfBirth"
+              class="form-control"
+              [(ngModel)]="newSupplier.dateOfBirth"
+              name="dateOfBirth" />
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Endereço -->
+      <section class="col-12 mt-4">
+
+        <header class="mb-3">
+          <h6 class="text-primary border-bottom pb-2">
+            Endereço
+          </h6>
+        </header>
+
+        <div class="row g-3">
+
+          <article class="col-md-4">
+            <label for="cep" class="form-label">
+              CEP
+            </label>
+
+            <input
+              type="text"
+              id="cep"
+              class="form-control"
+              placeholder="Digite o CEP"
+              [(ngModel)]="newSupplier.address.cep"
+              name="cep" />
+          </article>
+
+          <article class="col-md-8">
+            <label for="street" class="form-label">
+              Rua
+            </label>
+
+            <input
+              type="text"
+              id="street"
+              class="form-control"
+              placeholder="Digite a rua"
+              [(ngModel)]="newSupplier.address.street"
+              name="street" />
+          </article>
+
+          <article class="col-md-4">
+            <label for="number" class="form-label">
+              Número
+            </label>
+
+            <input
+              type="text"
+              id="number"
+              class="form-control"
+              placeholder="Digite o número"
+              [(ngModel)]="newSupplier.address.number"
+              name="number" />
+          </article>
+
+          <article class="col-md-8">
+            <label for="complement" class="form-label">
+              Complemento
+            </label>
+
+            <input
+              type="text"
+              id="complement"
+              class="form-control"
+              placeholder="Digite o complemento"
+              [(ngModel)]="newSupplier.address.complement"
+              name="complement" />
+          </article>
+
+          <article class="col-md-6">
+            <label for="city" class="form-label">
+              Cidade
+            </label>
+
+            <input
+              type="text"
+              id="city"
+              class="form-control"
+              placeholder="Digite a cidade"
+              [(ngModel)]="newSupplier.address.city"
+              name="city" />
+          </article>
+
+          <article class="col-md-6">
+            <label for="state" class="form-label">
+              Estado
+            </label>
+
+            <input
+              type="text"
+              id="state"
+              class="form-control"
+              placeholder="Digite o estado"
+              [(ngModel)]="newSupplier.address.state"
+              name="state" />
+          </article>
+
+        </div>
+      </section>
+
+    </form>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="modal-footer">
+
+    <button
+      type="button"
+      class="btn btn-secondary"
+      data-bs-dismiss="modal">
+      Cancelar
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="createSupplier()">
+      Salvar Fornecedor
+    </button>
+
+  </footer>
+
+</section>

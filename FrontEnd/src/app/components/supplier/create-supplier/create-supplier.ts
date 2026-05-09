@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { Supplier } from '../../../interface/supplier';
 import { SupplierService } from '../../../services/supplierService/supplier-service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-create-supplier',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './create-supplier.html',
   styleUrl: './create-supplier.scss',
 })
@@ -15,18 +16,19 @@ export class CreateSupplier {
   newSupplier : Supplier = {
     id: 0,
     name: '',
-    email: '',
-    phone: '',
-    address: '',
     cnpjCpf: '',
-    rgIe: '',
+    rg: '',
     dateOfBirth: '',
-    cep: '',
-    number: '',
-    complement: '',
-    neighborhood: '',
-    city: '',
-    state: ''
+    address: {
+      cep: '',
+      street: '',
+      number: '',
+      complement: '',
+      city: '',
+      state: ''
+    },
+    email: '',
+    phone: ''
   };
 
    createSupplier(){
