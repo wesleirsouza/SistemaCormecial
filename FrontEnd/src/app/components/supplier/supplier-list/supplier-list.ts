@@ -26,4 +26,19 @@ export class SupplierList {
       }
     })
   }
+
+  createSupplier(supplier: Supplier){
+    this.supplierService.createSupplier(supplier).subscribe({
+      next : (data : Supplier) => {
+        this.listSuppliers.push(data);
+        this.cdr.markForCheck();
+      },
+      error : (err) => {
+        console.error('Error creating supplier:', err);
+      }
+    })
+  }
+
+
+  
 }
