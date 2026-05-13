@@ -3,6 +3,6 @@ import { Home } from './components/home/home';
 import { SupplierList } from './components/supplier/supplier-list/supplier-list';
 
 export const routes: Routes = [
-    {path: '', component: Home, title: 'Sistema Simples'},
+    {path: '', component: Home, title: 'home page'},
     {path: 'supplier', component: SupplierList, title: 'supplier'}
 ];
