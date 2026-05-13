@@ -51,8 +51,13 @@
               id="cnpj"
               class="form-control"
               placeholder="Digite o CNPJ"
-              [(ngModel)]="newSupplier.cnpjCpf"
+              (input)="onCnpjChange(newSupplier.cnpjCpf)"
+              [class.is-invalid]="cnpjExists"
               name="cnpj" />
+
+            <div class="invalid-feedback">
+              CNPJ já cadastrado.
+            </div>
           </article>
 
           <article class="col-md-6">
