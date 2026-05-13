@@ -43,20 +43,20 @@
 
           <article class="col-md-6">
             <label for="cnpj" class="form-label">
-              CNPJ
+              CNPJ/CPF
             </label>
 
             <input
               type="text"
               id="cnpj"
               class="form-control"
-              placeholder="Digite o CNPJ"
+              placeholder="Digite o CNPJ/CPF"
               (input)="onCnpjChange(newSupplier.cnpjCpf)"
               [class.is-invalid]="cnpjExists"
               name="cnpj" />
 
             <div class="invalid-feedback">
-              CNPJ já cadastrado.
+              CNPJ/CPF já cadastrado.
             </div>
           </article>
 
