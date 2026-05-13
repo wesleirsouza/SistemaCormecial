@@ -44,6 +44,16 @@ public class SupplierController {
         return ResponseEntity.ok(supplierService.findById(id));
     }
 
+    @GetMapping("/check-cnpj")
+    public ResponseEntity<Boolean> checkCnpj(
+            @RequestParam String cnpj){
+
+        return ResponseEntity.ok(
+                supplierService.existsByCnpjCpf(cnpj)
+        );
+
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         supplierService.deleteSupplier(id);

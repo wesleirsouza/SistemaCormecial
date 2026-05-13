@@ -57,4 +57,10 @@ public class SupplierService {
 
         supplierRepository.delete(supplier);
     }
+
+    public Boolean existsByCnpjCpf(String cnpj){
+
+        return supplierRepository.existsByCnpjCpf(cnpj);
+
+    }
 }
