@@ -32,13 +32,11 @@ public class Client {
     @NotBlank(message = "The email and required")
     private String email;
 
-    @Column(name="CEP")
-    @NotBlank(message = "The CEP and required")
-    private String cep;
-
     @OneToMany(mappedBy = "client")
     @JsonIgnore
     private List<Order> order;
 
-
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 }

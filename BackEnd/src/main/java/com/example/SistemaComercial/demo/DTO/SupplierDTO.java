@@ -1,5 +1,6 @@
 package com.example.SistemaComercial.demo.DTO;
 
+import com.example.SistemaComercial.demo.model.Address;
 import lombok.Data;
 
 @Data
@@ -10,6 +11,9 @@ public class SupplierDTO {
     private String cnpjCpf;
     private String rg;
     private String dateOfBirth;
-    private String cep;
+    private Address address;
     private String email;
+
+    public void setAddress(String string) {
+    }
 }

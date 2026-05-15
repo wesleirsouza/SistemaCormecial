@@ -14,7 +14,7 @@ public class SupplierMapper {
         dto.setCnpjCpf(supplier.getCnpjCpf());
         dto.setRg(supplier.getRg());
         dto.setDateOfBirth(supplier.getDateOfBirth());
-        dto.setCep(supplier.getCep());
+        dto.setAddress(supplier.getAddress().toString());
         dto.setEmail(supplier.getEmail());
 
         return dto;
@@ -28,7 +28,7 @@ public class SupplierMapper {
         supplier.setCnpjCpf(dto.getCnpjCpf());
         supplier.setRg(dto.getRg());
         supplier.setDateOfBirth(dto.getDateOfBirth());
-        supplier.setCep(dto.getCep());
+        supplier.setAddress(dto.getAddress());
         supplier.setEmail(dto.getEmail());
 
         return supplier;
@@ -42,8 +42,8 @@ public class SupplierMapper {
         if (dto.getEmail() != null)
             supplier.setEmail(dto.getEmail());
 
-        if (dto.getCep() != null)
-            supplier.setCep(dto.getCep());
+        if (dto.getAddress() != null)
+            supplier.setAddress(dto.getAddress());
 
         if (dto.getRg() != null)
             supplier.setRg(dto.getRg());

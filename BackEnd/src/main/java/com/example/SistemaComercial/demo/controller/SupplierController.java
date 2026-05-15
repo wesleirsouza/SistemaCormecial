@@ -11,13 +11,13 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/supplier")
+@RequestMapping("/api/")
 public class SupplierController {
 
     @Autowired
     private SupplierService supplierService;
 
-    @PostMapping("/create")
+    @PostMapping("/supplier")
     public ResponseEntity<?> create(@RequestBody @Valid SupplierDTO dto) {
         try {
             return ResponseEntity.ok(supplierService.create(dto));
@@ -26,7 +26,7 @@ public class SupplierController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/supplier/{id}")
     public ResponseEntity<SupplierDTO> update(
             @PathVariable Long id,
             @RequestBody SupplierDTO dto) {
@@ -34,12 +34,12 @@ public class SupplierController {
         return ResponseEntity.ok(supplierService.update(id, dto));
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/supplier")
     public ResponseEntity<List<SupplierDTO>> findAll(){
         return ResponseEntity.ok(supplierService.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/supplier/{id}")
     public ResponseEntity<SupplierDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(supplierService.findById(id));
     }
@@ -54,7 +54,7 @@ public class SupplierController {
 
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("supplier/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         supplierService.deleteSupplier(id);
         return ResponseEntity.noContent().build();

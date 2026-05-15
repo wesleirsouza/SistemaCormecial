@@ -33,14 +33,14 @@ public class Supplier {
     @Column(name = "dateOfBirth", nullable = false)
     private String dateOfBirth;
 
-    @Column(name = "cep")
-    @NotBlank(message = "The CEP and required")
-    private String cep;
-
     @Column(name = "email")
     @NotBlank(message = "The email and required")
     private String email;
 
     @OneToMany(mappedBy = "supplier")
     private List<Product> products;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 }

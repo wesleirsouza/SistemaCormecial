@@ -13,8 +13,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CreateSupplier {
 cnpjExists: any;
-onCnpjChange(arg0: string) {
-throw new Error('Method not implemented.');
+onCnpjChange() {
+  console.log(this.newSupplier.cnpjCpf);
 }
 
   supplierService = inject(SupplierService);
@@ -39,6 +39,7 @@ throw new Error('Method not implemented.');
   };
 
    createSupplier(){
+    console.log(this.newSupplier);
 
   const document = this.newSupplier.cnpjCpf.replace(/\D/g, '');
 
@@ -198,7 +199,7 @@ validateCnpj(cnpj: string): boolean {
 }
 
   validation(){
-    return this.newSupplier.name != "" && this.newSupplier.cnpjCpf != "" && this.newSupplier.rg != "" && this.newSupplier.dateOfBirth != "" && this.newSupplier.address.cep != "" && this.newSupplier.address.street != "" && this.newSupplier.address.number != "" && this.newSupplier.address.city != "" && this.newSupplier.address.state != "" && this.newSupplier.email != "" && this.newSupplier.phone != "";
+    return this.newSupplier.name != "" && this.newSupplier.cnpjCpf != "" && this.newSupplier.rg != "" && this.newSupplier.dateOfBirth != "" && this.newSupplier.address.cep != "" && this.newSupplier.address.street != "" && this.newSupplier.address.number != "" && this.newSupplier.address.city != "" && this.newSupplier.address.state != "" && this.newSupplier.email != "";
   }
 
 }
