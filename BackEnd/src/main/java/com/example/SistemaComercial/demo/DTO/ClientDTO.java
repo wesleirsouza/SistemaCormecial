@@ -9,5 +9,5 @@ public class ClientDTO {
     private String cnpjCpf;
     private String name_companyName;
     private String email;
-    private String cep;
+    private AddressDTO address;
 }

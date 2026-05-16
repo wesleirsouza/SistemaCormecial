@@ -11,9 +11,6 @@ public class SupplierDTO {
     private String cnpjCpf;
     private String rg;
     private String dateOfBirth;
-    private Address address;
     private String email;
-
-    public void setAddress(String string) {
-    }
+    private AddressDTO address;
 }

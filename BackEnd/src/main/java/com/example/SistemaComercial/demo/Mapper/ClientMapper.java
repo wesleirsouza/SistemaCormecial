@@ -13,7 +13,10 @@ public class ClientMapper {
         dto.setCnpjCpf(client.getCnpjCpf());
         dto.setName_companyName(client.getName_companyName());
         dto.setEmail(client.getEmail());
-        dto.setCep(client.getCep());
+
+        dto.setAddress(
+                AddressMapper.toDTO(client.getAddress())
+        );
 
         return dto;
     }
@@ -23,10 +26,14 @@ public class ClientMapper {
 
         Client client = new Client();
 
+        client.setId(dto.getId());
         client.setCnpjCpf(dto.getCnpjCpf());
-        client.setName_companyName(dto.getName_companyName()); // conversão aqui
+        client.setName_companyName(dto.getName_companyName());
         client.setEmail(dto.getEmail());
-        client.setCep(dto.getCep());
+
+        client.setAddress(
+                AddressMapper.toEntity(dto.getAddress())
+        );
 
         return client;
     }
@@ -39,7 +46,12 @@ public class ClientMapper {
         if (dto.getEmail() != null)
             client.setEmail(dto.getEmail());
 
-        if (dto.getCep() != null)
-            client.setCep(dto.getCep());
+        if (dto.getCnpjCpf() != null)
+            client.setCnpjCpf(dto.getCnpjCpf());
+
+        if (dto.getAddress() != null)
+            client.setAddress(
+                    AddressMapper.toEntity(dto.getAddress())
+            );
     }
 }

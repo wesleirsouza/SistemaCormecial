@@ -14,8 +14,11 @@ public class SupplierMapper {
         dto.setCnpjCpf(supplier.getCnpjCpf());
         dto.setRg(supplier.getRg());
         dto.setDateOfBirth(supplier.getDateOfBirth());
-        dto.setAddress(supplier.getAddress().toString());
         dto.setEmail(supplier.getEmail());
+
+        dto.setAddress(
+                AddressMapper.toDTO(supplier.getAddress())
+        );
 
         return dto;
     }
@@ -24,12 +27,16 @@ public class SupplierMapper {
 
         Supplier supplier = new Supplier();
 
+        supplier.setId(dto.getId());
         supplier.setName(dto.getName());
         supplier.setCnpjCpf(dto.getCnpjCpf());
         supplier.setRg(dto.getRg());
         supplier.setDateOfBirth(dto.getDateOfBirth());
-        supplier.setAddress(dto.getAddress());
         supplier.setEmail(dto.getEmail());
+
+        supplier.setAddress(
+                AddressMapper.toEntity(dto.getAddress())
+        );
 
         return supplier;
     }
@@ -42,13 +49,18 @@ public class SupplierMapper {
         if (dto.getEmail() != null)
             supplier.setEmail(dto.getEmail());
 
-        if (dto.getAddress() != null)
-            supplier.setAddress(dto.getAddress());
+        if (dto.getCnpjCpf() != null)
+            supplier.setCnpjCpf(dto.getCnpjCpf());
 
         if (dto.getRg() != null)
             supplier.setRg(dto.getRg());
 
         if (dto.getDateOfBirth() != null)
             supplier.setDateOfBirth(dto.getDateOfBirth());
+
+        if (dto.getAddress() != null)
+            supplier.setAddress(
+                    AddressMapper.toEntity(dto.getAddress())
+            );
     }
 }

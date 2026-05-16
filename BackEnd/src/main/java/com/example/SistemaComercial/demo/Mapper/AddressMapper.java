@@ -1,0 +1,41 @@
+package com.example.SistemaComercial.demo.Mapper;
+
+import com.example.SistemaComercial.demo.DTO.AddressDTO;
+import com.example.SistemaComercial.demo.model.Address;
+
+public class AddressMapper {
+
+    public static AddressDTO toDTO(Address address){
+
+        if(address == null){
+            return null;
+        }
+
+        AddressDTO dto = new AddressDTO();
+
+        dto.setId(address.getId());
+        dto.setCep(address.getCep());
+        dto.setStreet(address.getStreet());
+        dto.setCity(address.getCity());
+        dto.setState(address.getState());
+
+        return dto;
+    }
+
+    public static Address toEntity(AddressDTO dto){
+
+        if(dto == null){
+            return null;
+        }
+
+        Address address = new Address();
+
+        address.setId(dto.getId());
+        address.setCep(dto.getCep());
+        address.setStreet(dto.getStreet());
+        address.setCity(dto.getCity());
+        address.setState(dto.getState());
+
+        return address;
+    }
+}
