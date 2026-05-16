@@ -11,23 +11,23 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/client")
+@RequestMapping("/api/")
 public class ClientController {
 
     @Autowired
     private ClientService clientService;
 
-    @GetMapping("/findAll")
+    @GetMapping("/client")
     public ResponseEntity<List<ClientDTO>> findAll() {
         return ResponseEntity.ok(clientService.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/client/{id}")
     public ResponseEntity<ClientDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(clientService.findById(id));
     }
 
-    @PostMapping("/create")
+    @PostMapping("/client")
     public ResponseEntity<?> create(@RequestBody @Valid ClientDTO dto) {
         try {
             return ResponseEntity.ok(clientService.create(dto));
@@ -36,7 +36,7 @@ public class ClientController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/client/{id}")
     public ResponseEntity<ClientDTO> update(
             @PathVariable Long id,
             @RequestBody ClientDTO dto) {
@@ -44,7 +44,7 @@ public class ClientController {
         return ResponseEntity.ok(clientService.update(id, dto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/client/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         clientService.deleteClient(id);
         return ResponseEntity.noContent().build();

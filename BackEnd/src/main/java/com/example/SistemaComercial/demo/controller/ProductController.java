@@ -11,28 +11,28 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/api/")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-    @PostMapping("/create")
+    @PostMapping("/product")
     public ResponseEntity<ProductDTO> create(@RequestBody @Valid ProductDTO dto) {
         return ResponseEntity.ok(productService.create(dto));
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/product")
     public ResponseEntity<List<ProductDTO>> findAll() {
         return ResponseEntity.ok(productService.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/product/{id}")
     public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.findById(id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/product/{id}")
     public ResponseEntity<ProductDTO> update(
             @PathVariable Long id,
             @RequestBody ProductDTO dto) {
@@ -40,7 +40,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.update(id, dto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/product/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         productService.delete(id);
         return ResponseEntity.noContent().build();

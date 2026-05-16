@@ -10,13 +10,13 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/api/")
 public class OrderController {
 
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("/create")
+    @PostMapping("/orders")
     public ResponseEntity<?> create(@RequestBody OrderDTO dto) {
         try {
             return ResponseEntity.ok(orderService.create(dto));
@@ -25,17 +25,17 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/orders")
     public ResponseEntity<List<OrderDTO>> findAll() {
         return ResponseEntity.ok(orderService.findAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/orders/{id}")
     public ResponseEntity<OrderDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.findById(id));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/orders/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         orderService.deleteById(id);
         return ResponseEntity.ok().build();
