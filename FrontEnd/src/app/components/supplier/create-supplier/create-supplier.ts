@@ -3,6 +3,7 @@ import { Supplier } from '../../../interface/supplier';
 import { SupplierService } from '../../../services/supplierService/supplier-service';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SupplierList } from '../supplier-list/supplier-list';
 
 
 @Component({
@@ -21,8 +22,10 @@ cnpjExists: any;
   supplierService = inject(SupplierService);
   activeModal = inject(NgbActiveModal);
 
+  listSuppliers: Supplier[] = [];
+
   newSupplier : Supplier = {
-    id: 0,
+    id: null,
     name: "",
     cnpjCpf: "",
     rg: "",
@@ -37,15 +40,20 @@ cnpjExists: any;
       complement: ''
     }
   }
-  createSupplier(){
-    if(this.validation()){
-      this.supplierService.createSupplier(this.newSupplier);
-      this.activeModal.close();
-    } else {
-      alert("Preencha todos os campos corretamente.");
-    }
-  }
+ createSupplier(supplier : Supplier) {
 
+  this.supplierService.createSupplier(supplier).subscribe({
+    next: (data: Supplier) => {
+
+      
+      this.activeModal.close()
+    },
+
+    error: (err) => {
+      console.error('Error creating supplier:', err);
+    }
+  });
+}
   validateCpf(cpf: string): boolean {
 
     cpf = cpf.replace(/\D/g, '');

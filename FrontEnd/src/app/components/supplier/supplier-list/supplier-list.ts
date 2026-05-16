@@ -24,6 +24,7 @@ export class SupplierList {
     cnpjCpf: '',  
     rg: '',
     dateOfBirth: '',
+    email: '',
     address: {
       cep: '',
       street: '',
@@ -32,17 +33,16 @@ export class SupplierList {
       city: '',
       state: ''
     },
-    email: '',
   }
- 
-  ngOnInit(){
+  ngOnInit(): void {
+  this.getSuppliers();
+}
+
+  getSuppliers(){
     this.supplierService.findAll().subscribe({
       next: (data : Supplier[]) => {
         this.listSuppliers = data;
-        this.cdr.markForCheck();
-      },
-      error: (err) => {
-        console.error('Error fetching suppliers:', err);
+        this.cdr.detectChanges();
       }
     })
   }
@@ -54,13 +54,19 @@ export class SupplierList {
   (event.target as HTMLElement).blur();
 
   const modalRef = this.modalService.open(CreateSupplier, {
-    size: dialogSize,
-    centered: false,
   });
 
+  modalRef.result.then((result) => {
+
+    if(result){
+      this.listSuppliers.push(result);
+    }
+    
+
+  }).catch(() => {});
   return modalRef.result.then(() => {
-    this.ngOnInit();
-  });
+        this.ngOnInit();
+        })
 }
   
 }

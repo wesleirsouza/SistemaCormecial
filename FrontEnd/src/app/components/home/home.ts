@@ -4,7 +4,7 @@ import { Sidebar } from "../sidebar/sidebar";
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, Sidebar],
+  imports: [],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

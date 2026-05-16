@@ -1,7 +1,7 @@
 import { Address } from "./address";
 
 export interface Supplier {
-   id: number;
+    id: number | null;
     name: string;
     cnpjCpf: string;
     rg: string;
