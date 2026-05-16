@@ -33,7 +33,6 @@ export class SupplierList {
       state: ''
     },
     email: '',
-    phone: ''
   }
  
   ngOnInit(){
@@ -49,15 +48,19 @@ export class SupplierList {
   }
 
   openModalCreate(
-      dialogSize: 'sm' | 'lg' | 'md' = 'md'
-    ){
-      const modalRef = this.modalService.open(CreateSupplier, {
-        size: dialogSize,
-        centered: false,
-      });
-      return modalRef.result.then(() => {
-        this.ngOnInit();
-      })
-    }
+  event: Event,
+  dialogSize: 'sm' | 'lg' | 'md' = 'md'
+){
+  (event.target as HTMLElement).blur();
+
+  const modalRef = this.modalService.open(CreateSupplier, {
+    size: dialogSize,
+    centered: false,
+  });
+
+  return modalRef.result.then(() => {
+    this.ngOnInit();
+  });
+}
   
 }
