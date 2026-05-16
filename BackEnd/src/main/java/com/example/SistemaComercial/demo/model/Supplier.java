@@ -31,7 +31,7 @@ public class Supplier {
     private String rg;
 
     @Column(name = "dateOfBirth", nullable = false)
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(name = "email")
     @NotBlank(message = "The email and required")
@@ -40,7 +40,7 @@ public class Supplier {
     @OneToMany(mappedBy = "supplier")
     private List<Product> products;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
 }

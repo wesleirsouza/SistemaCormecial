@@ -13,7 +13,6 @@ public class AddressMapper {
 
         AddressDTO dto = new AddressDTO();
 
-        dto.setId(address.getId());
         dto.setCep(address.getCep());
         dto.setStreet(address.getStreet());
         dto.setCity(address.getCity());
@@ -30,7 +29,6 @@ public class AddressMapper {
 
         Address address = new Address();
 
-        address.setId(dto.getId());
         address.setCep(dto.getCep());
         address.setStreet(dto.getStreet());
         address.setCity(dto.getCity());
