@@ -54,6 +54,8 @@ export class SupplierList {
   (event.target as HTMLElement).blur();
 
   const modalRef = this.modalService.open(CreateSupplier, {
+    size: dialogSize,
+        centered: false,
   });
 
   modalRef.result.then((result) => {
