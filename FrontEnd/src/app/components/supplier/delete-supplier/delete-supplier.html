@@ -1,1 +1,27 @@
-<p>delete-supplier works!</p>
+<div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Desejar deletar o fornecedor</h5>
+      </div>
+      <div class="modal-body">
+        <p>Nome: {{supplier.name}}</p>
+        <p>CPF/CNPJ: {{supplier.cnpjCpf}}</p>
+        <p>RG: {{supplier.rg}}</p>
+        <p>Data de Nascimento: {{supplier.dateOfBirth}}</p>
+        <p>Endereço: {{ supplier.address.cep }}, {{supplier.address.street}}, {{supplier.address.number}} - {{supplier.address.complement}}, {{supplier.address.city}} - {{supplier.address.state}}</p>
+      </div>
+      <div class="modal-footer">
+        <button 
+            type="button" 
+            class="btn btn-secondary" 
+            data-bs-dismiss="modal" 
+            (click)="activeModal.dismiss()">
+            Cancelar
+        </button>
+        <button 
+            type="button" 
+            class="btn btn-primary" 
+            (click)="deleteSupplier()">
+            Confirmar
+        </button>
+      </div>
+    </div>
