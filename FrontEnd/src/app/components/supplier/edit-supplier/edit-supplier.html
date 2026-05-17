@@ -1,1 +1,153 @@
-<p>edit-supplier works!</p>
+<div class="modal-header">
+  <h5 class="modal-title">Edição de Fornecedor</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss()">
+  </button>
+</div>
+
+<div class="modal-body">
+  <form>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Nome</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.name"
+        name="name"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">CNPJ/CPF</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.cnpjCpf"
+        name="cnpjCpf"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">RG</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.rg"
+        name="rg"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Data de Nascimento</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.dateOfBirth"
+        name="dateOfBirth"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Email</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.email"
+        name="email"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Cep</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.address.cep"
+        name="cep"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Rua</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.address.street"
+        name="street"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Número</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.address.number"
+        name="number"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Complemento</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.address.complement"
+        name="complement"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Cidade</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.address.city"
+        name="city"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Estado</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control form-control-sm"
+        [(ngModel)]="supplier.address.state"
+        name="state"
+      />
+    </div>
+
+  </form>
+</div>
+    
+
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-secondary btn-sm"
+    (click)="activeModal.dismiss()">
+    Cancelar
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary btn-sm"
+    (click)="editSupplier()"
+    [disabled]="!validation()">
+    Salvar
+  </button>
+</div>

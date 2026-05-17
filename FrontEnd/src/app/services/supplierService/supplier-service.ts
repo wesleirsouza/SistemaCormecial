@@ -6,6 +6,7 @@ import { Supplier } from '../../interface/supplier';
   providedIn: 'root',
 })
 export class SupplierService {
+  
 
   private http = inject(HttpClient);
   private apiUrl = "http://localhost:8080/api/supplier";

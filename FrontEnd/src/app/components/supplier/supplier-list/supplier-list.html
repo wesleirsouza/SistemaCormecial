@@ -1,7 +1,7 @@
 <h3 class="title-supplier">Lista de Fornecedor</h3>
 
 <button
-  (click)="openModalCreate($event)"
+  (click)="openModalCreate()"
   type="button"
   class="btn btn-primary mb-4"
 >
@@ -12,11 +12,12 @@
   <table class="table table-hover align-middle">
     <thead class="table-light">
       <tr>
-        <th class="px-5">Nome</th>
-        <th class="px-5">CNPJ/CPF</th>
-        <th class="px-5">RG</th>
-        <th class="px-5">Data de Nascimento</th>
-        <th class="px-5">Email</th>
+        <th scope="col" class="px-5">Nome</th>
+        <th scope="col" class="px-5">CNPJ/CPF</th>
+        <th scope="col" class="px-5">RG</th>
+        <th scope="col" class="px-5">Data de Nascimento</th>
+        <th scope="col" class="px-5">Email</th>
+        <th scope="col" colspan="2">Alterações</th>
       </tr>
     </thead>
 
@@ -28,6 +29,17 @@
         <td class="px-5 py-3">{{ supplier.rg }}</td>
         <td class="px-5 py-3">{{ supplier.dateOfBirth }}</td>
         <td class="px-5 py-3">{{ supplier.email }}</td>
+        <td>
+                    <button
+                     (click)="openModalEdit(supplier)" 
+                     type="button" 
+                     class="btn btn-warning" 
+                     data-toggle="button" 
+                     aria-pressed="false" 
+                     autocomplete="off">
+                     Editar
+                    </button>
+                </td>
       </tr>
       }
     </tbody>

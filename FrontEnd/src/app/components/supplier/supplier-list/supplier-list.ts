@@ -3,6 +3,7 @@ import { SupplierService } from '../../../services/supplierService/supplier-serv
 import { Supplier } from '../../../interface/supplier';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateSupplier } from '../create-supplier/create-supplier';
+import { EditSupplier } from '../edit-supplier/edit-supplier';
 
 
 @Component({
@@ -47,28 +48,30 @@ export class SupplierList {
     })
   }
 
-  openModalCreate(
-  event: Event,
-  dialogSize: 'sm' | 'lg' | 'md' = 'md'
-){
-  (event.target as HTMLElement).blur();
-
-  const modalRef = this.modalService.open(CreateSupplier, {
-    size: dialogSize,
+   openModalCreate(
+      dialogSize: 'sm' | 'lg' | 'md' = 'md'
+    ){
+      const modalRef = this.modalService.open(CreateSupplier, {
+        size: dialogSize,
         centered: false,
-  });
-
-  modalRef.result.then((result) => {
-
-    if(result){
-      this.listSuppliers.push(result);
-    }
-    
-
-  }).catch(() => {});
-  return modalRef.result.then(() => {
+      });
+      return modalRef.result.then(() => {
         this.ngOnInit();
-        })
-}
+      })
+    }
+
+openModalEdit(
+      supplier : Supplier, 
+      dialogSize: 'sm' | 'lg' | 'md' = 'md'
+    ){
+      const modalRef = this.modalService.open(EditSupplier, {
+        size: dialogSize,
+        centered: false,
+      });
+      modalRef.componentInstance.supplier = supplier;
+      return modalRef.result.then(() => {
+        this.ngOnInit();
+      })
+    }
   
 }
