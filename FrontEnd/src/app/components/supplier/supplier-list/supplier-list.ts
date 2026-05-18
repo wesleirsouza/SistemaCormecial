@@ -4,6 +4,7 @@ import { Supplier } from '../../../interface/supplier';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateSupplier } from '../create-supplier/create-supplier';
 import { EditSupplier } from '../edit-supplier/edit-supplier';
+import { DeleteSupplier } from '../delete-supplier/delete-supplier';
 
 
 @Component({
@@ -48,30 +49,44 @@ export class SupplierList {
     })
   }
 
-   openModalCreate(
-      dialogSize: 'sm' | 'lg' | 'md' = 'md'
-    ){
-      const modalRef = this.modalService.open(CreateSupplier, {
-        size: dialogSize,
-        centered: false,
-      });
-      return modalRef.result.then(() => {
-        this.ngOnInit();
-      })
-    }
+  openModalCreate(
+        dialogSize: 'sm' | 'lg' | 'md' = 'md'
+      ){
+        const modalRef = this.modalService.open(CreateSupplier, {
+          size: dialogSize,
+          centered: false,
+        });
+        return modalRef.result.then(() => {
+          this.ngOnInit();
+        })
+      }
 
-openModalEdit(
-      supplier : Supplier, 
-      dialogSize: 'sm' | 'lg' | 'md' = 'md'
-    ){
-      const modalRef = this.modalService.open(EditSupplier, {
-        size: dialogSize,
-        centered: false,
-      });
-      modalRef.componentInstance.supplier = supplier;
-      return modalRef.result.then(() => {
-        this.ngOnInit();
-      })
-    }
+  openModalEdit(
+        supplier : Supplier, 
+        dialogSize: 'sm' | 'lg' | 'md' = 'md'
+      ){
+        const modalRef = this.modalService.open(EditSupplier, {
+          size: dialogSize,
+          centered: false,
+        });
+        modalRef.componentInstance.supplier = supplier;
+        return modalRef.result.then(() => {
+          this.ngOnInit();
+        })
+      }
+
+  openModalDelete(
+        supplier : Supplier, 
+        dialogSize: 'sm' | 'lg' | 'md' = 'md' 
+      ){
+        const modalRef = this.modalService.open(DeleteSupplier, {
+          size: dialogSize,
+          centered: false,
+        });
+        modalRef.componentInstance.supplier = supplier;
+        return modalRef.result.then(() => {
+          this.ngOnInit();
+        })
+      }    
   
 }

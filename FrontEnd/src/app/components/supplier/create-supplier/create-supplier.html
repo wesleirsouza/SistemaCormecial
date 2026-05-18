@@ -132,6 +132,7 @@
           [class.is-invalid]="cepError"
           [(ngModel)]="newSupplier.address.cep"
           name="cep"
+          (input)="formatCep()"
           placeholder="00000-000"
           maxlength="9"
           (ngModelChange)="onCepChange()"

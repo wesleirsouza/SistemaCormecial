@@ -97,7 +97,9 @@ checkDocument(value: string) {
 
   this.isCheckingDocument = true;
 
-  this.supplierService.findByCnpjCpf(value).subscribe({
+  const cleanDocument = value.replace(/\D/g, '');
+
+  this.supplierService.findByCnpjCpf(cleanDocument).subscribe({
     next: (suppliers) => {
       this.documentExists = suppliers.length > 0;
       this.isCheckingDocument = false;
@@ -106,7 +108,6 @@ checkDocument(value: string) {
       this.isCheckingDocument = false;
     }
   });
-
 }
 
   getDocumentType(value: string): 'CPF' | 'CNPJ' | 'INVALID' {
@@ -139,23 +140,29 @@ checkDocument(value: string) {
 }
 
   createSupplier() {
-    if (!this.isFormValid()) return;
 
-    this.isSubmitting = true;
-    this.errorMessage = '';
+  if (!this.isFormValid()) return;
 
-    this.supplierService.createSupplier(this.newSupplier).subscribe({
-      next: () => {
-        this.isSubmitting = false;
-        this.activeModal.close('created');
-      },
-      error: (err) => {
-        this.isSubmitting = false;
-        this.errorMessage = 'Erro ao cadastrar fornecedor. Tente novamente.';
-        console.error('Error creating supplier:', err);
-      }
-    });
-  }
+  this.isSubmitting = true;
+  this.errorMessage = '';
+
+  const supplierToSend = {
+    ...this.newSupplier,
+    cnpjCpf: this.newSupplier.cnpjCpf.replace(/\D/g, '')
+  };
+
+  this.supplierService.createSupplier(supplierToSend).subscribe({
+    next: () => {
+      this.isSubmitting = false;
+      this.activeModal.close('created');
+    },
+    error: (err) => {
+      this.isSubmitting = false;
+      this.errorMessage = 'Erro ao cadastrar fornecedor. Tente novamente.';
+      console.error('Error creating supplier:', err);
+    }
+  });
+}
 
   validateCpf(cpf: string): boolean {
     cpf = cpf.replace(/\D/g, '');
@@ -208,6 +215,17 @@ checkDocument(value: string) {
 
   isCepLoading = false;
   cepError = '';
+
+formatCep() {
+
+  let value = this.newSupplier.address.cep || '';
+
+  value = value.replace(/\D/g, '');
+
+  value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+
+  this.newSupplier.address.cep = value;
+}
 
 onCepChange() {
   this.cepSubject.next(this.newSupplier.address.cep);
