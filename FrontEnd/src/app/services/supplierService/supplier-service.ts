@@ -30,9 +30,10 @@ export class SupplierService {
     return this.http.delete(this.apiUrl+"/"+supplier.id);
   }
 
-  public findByCnpjCpf(cnpjCpf: string) {
-  const cleaned = cnpjCpf.replace(/\D/g, '');
-  return this.http.get<Supplier[]>(`${this.apiUrl}?cnpjCpf=${cleaned}`);
+  findByCnpjCpf(cnpjCpf: string) {
+  return this.http.get<boolean>(
+    `${this.apiUrl}/exists/${cnpjCpf}`
+  );
 }
 
   }
