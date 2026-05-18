@@ -18,9 +18,13 @@ public class SupplierService {
 
     public SupplierDTO create(SupplierDTO dto) {
 
-        if (supplierRepository.existsByCnpjCpf(dto.getCnpjCpf())) {
+        String cleanDocument = dto.getCnpjCpf().replaceAll("\\D", "");
+
+        if (supplierRepository.existsByCnpjCpf(cleanDocument)) {
             throw new RuntimeException("Supplier already registered");
         }
+
+        dto.setCnpjCpf(cleanDocument);
 
         Supplier supplier = SupplierMapper.toEntity(dto);
 
@@ -46,6 +50,10 @@ public class SupplierService {
         Supplier supplier = supplierRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Supplier not found"));
 
+        dto.setCnpjCpf(
+                dto.getCnpjCpf().replaceAll("\\D", "")
+        );
+
         SupplierMapper.updateEntity(supplier, dto);
 
         return SupplierMapper.toDTO(supplierRepository.save(supplier));
@@ -60,7 +68,8 @@ public class SupplierService {
 
     public Boolean existsByCnpjCpf(String cnpj){
 
-        return supplierRepository.existsByCnpjCpf(cnpj);
+        String cleanDocument = cnpj.replaceAll("\\D", "");
 
+        return supplierRepository.existsByCnpjCpf(cleanDocument);
     }
 }
