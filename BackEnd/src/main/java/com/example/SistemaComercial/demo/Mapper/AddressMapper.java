@@ -15,6 +15,8 @@ public class AddressMapper {
 
         dto.setCep(address.getCep());
         dto.setStreet(address.getStreet());
+        dto.setNumber(address.getNumber());
+        dto.setComplement(address.getComplement());
         dto.setCity(address.getCity());
         dto.setState(address.getState());
 
@@ -31,6 +33,8 @@ public class AddressMapper {
 
         address.setCep(dto.getCep());
         address.setStreet(dto.getStreet());
+        address.setNumber(dto.getNumber());
+        address.setComplement(dto.getComplement());
         address.setCity(dto.getCity());
         address.setState(dto.getState());
 
