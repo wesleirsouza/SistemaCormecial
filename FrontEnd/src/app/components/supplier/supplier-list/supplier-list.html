@@ -1,69 +1,66 @@
-<h3 class="title-supplier">Lista de Fornecedor</h3>
+<h3 class="title-supplier mb-3">Lista de Fornecedor</h3>
 
 <button
   (click)="openModalCreate()"
   type="button"
-  class="btn btn-primary mb-4"
+  class="btn btn-primary mb-3"
 >
   Cadastrar Fornecedor
 </button>
 
 <div class="table-responsive">
-  <table class="table table-hover align-middle">
+  <table class="table table-hover align-middle table-sm">
     <thead class="table-light">
       <tr>
-        <th scope="col" class="px-5">Nome</th>
-        <th scope="col" class="px-5">CNPJ/CPF</th>
-        <th scope="col" class="px-5">RG</th>
-        <th scope="col" class="px-5">Data de Nascimento</th>
-        <th scope="col" class="px-5">Email</th>
-        <th scope="col" class="px-5">CEP</th>
-        <th scope="col" class="px-5">Rua</th>
-        <th scope="col" class="px-5">Número</th>
-        <th scope="col" class="px-5">Complemento</th>
-        <th scope="col" class="px-5">Cidade</th>
-        <th scope="col" class="px-5">Estado</th>
-        <th scope="col" colspan="2">Alterações</th>
-        <th scope="col" class="px-5"></th>
+        <th class="px-2">Nome</th>
+        <th class="px-2 text-nowrap">CNPJ/CPF</th>
+        <th class="px-2">RG</th>
+        <th class="px-2 text-nowrap">Nascimento</th>
+        <th class="px-2">Email</th>
+        <th class="px-2">CEP</th>
+        <th class="px-2">Rua</th>
+        <th class="px-2">Nº</th>
+        <th class="px-2">Complemento</th>
+        <th class="px-2">Cidade</th>
+        <th class="px-2">Estado</th>
+        <th class="px-2 text-center" colspan="2">Ações</th>
       </tr>
     </thead>
 
     <tbody>
       @for(supplier of this.listSuppliers; track supplier.id){
       <tr>
-        <td class="px-5 py-3">{{ supplier.name }}</td>
-        <td class="px-5 py-3">{{ supplier.cnpjCpf }}</td>
-        <td class="px-5 py-3">{{ supplier.rg }}</td>
-        <td class="px-5 py-3">{{ supplier.dateOfBirth }}</td>
-        <td class="px-5 py-3">{{ supplier.email }}</td>
-        <td class="px-5 py-3">{{ supplier.address.cep }}</td>
-        <td class="px-5 py-3">{{ supplier.address.street }}</td>
-        <td class="px-5 py-3">{{ supplier.address.number }}</td>
-        <td class="px-5 py-3">{{ supplier.address.complement }}</td>
-        <td class="px-5 py-3">{{ supplier.address.city }}</td>
-        <td class="px-5 py-3">{{ supplier.address.state }}</td>
-        <td>
-                    <button
-                     (click)="openModalEdit(supplier)" 
-                     type="button" 
-                     class="btn btn-warning" 
-                     data-toggle="button" 
-                     aria-pressed="false" 
-                     autocomplete="off">
-                     Editar
-                    </button>
-                </td>
-                <td>
-                    <button
-                     (click)="openModalDelete(supplier)" 
-                     type="button" 
-                     class="btn btn-danger" 
-                     data-toggle="button" 
-                     aria-pressed="false" 
-                     autocomplete="off">
-                     Deletar
-                    </button>
-                </td>
+        <td class="px-2 py-2">{{ supplier.name }}</td>
+        <td class="px-2 py-2 text-nowrap">{{ supplier.cnpjCpf }}</td>
+        <td class="px-2 py-2">{{ supplier.rg }}</td>
+        <td class="px-2 py-2 text-nowrap">{{ supplier.dateOfBirth }}</td>
+        <td class="px-2 py-2">{{ supplier.email }}</td>
+        <td class="px-2 py-2">{{ supplier.address.cep }}</td>
+        <td class="px-2 py-2">{{ supplier.address.street }}</td>
+        <td class="px-2 py-2">{{ supplier.address.number }}</td>
+        <td class="px-2 py-2">{{ supplier.address.complement }}</td>
+        <td class="px-2 py-2">{{ supplier.address.city }}</td>
+        <td class="px-2 py-2">{{ supplier.address.state }}</td>
+
+        <td class="px-2 py-2">
+          <button
+            (click)="openModalEdit(supplier)"
+            type="button"
+            class="btn btn-warning btn-sm"
+          >
+            Editar
+          </button>
+        </td>
+
+        <td class="px-2 py-2">
+          <button
+            (click)="openModalDelete(supplier)"
+            type="button"
+            class="btn btn-danger btn-sm"
+          >
+            Deletar
+          </button>
+        </td>
       </tr>
       }
     </tbody>
