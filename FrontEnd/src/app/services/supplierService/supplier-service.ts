@@ -7,7 +7,6 @@ import { Supplier } from '../../interface/supplier';
 })
 export class SupplierService {
   
-
   private http = inject(HttpClient);
   private apiUrl = "http://localhost:8080/api/supplier";
 
@@ -30,10 +29,9 @@ export class SupplierService {
     return this.http.delete(this.apiUrl+"/"+supplier.id);
   }
 
-  findByCnpjCpf(cnpjCpf: string) {
-  return this.http.get<boolean>(
-    `${this.apiUrl}/exists/${cnpjCpf}`
-  );
+  public findByCnpjCpf(cnpjCpf: string) {
+  const cleaned = cnpjCpf.replace(/\D/g, '');
+  return this.http.get<Supplier[]>(`${this.apiUrl}?cnpjCpf=${cleaned}`);
 }
 
-  }
+}

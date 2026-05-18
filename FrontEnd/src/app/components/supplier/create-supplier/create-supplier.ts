@@ -100,9 +100,9 @@ checkDocument(value: string) {
   const cleanDocument = value.replace(/\D/g, '');
 
   this.supplierService.findByCnpjCpf(cleanDocument).subscribe({
-    next: (exists: boolean) => {
+    next: (suppliers) => {
 
-      this.documentExists = exists;
+      this.documentExists = suppliers.length > 0;
       this.isCheckingDocument = false;
 
     },
