@@ -17,7 +17,14 @@
         <th scope="col" class="px-5">RG</th>
         <th scope="col" class="px-5">Data de Nascimento</th>
         <th scope="col" class="px-5">Email</th>
+        <th scope="col" class="px-5">CEP</th>
+        <th scope="col" class="px-5">Rua</th>
+        <th scope="col" class="px-5">Número</th>
+        <th scope="col" class="px-5">Complemento</th>
+        <th scope="col" class="px-5">Cidade</th>
+        <th scope="col" class="px-5">Estado</th>
         <th scope="col" colspan="2">Alterações</th>
+        <th scope="col" class="px-5"></th>
       </tr>
     </thead>
 
@@ -29,6 +36,12 @@
         <td class="px-5 py-3">{{ supplier.rg }}</td>
         <td class="px-5 py-3">{{ supplier.dateOfBirth }}</td>
         <td class="px-5 py-3">{{ supplier.email }}</td>
+        <td class="px-5 py-3">{{ supplier.address.cep }}</td>
+        <td class="px-5 py-3">{{ supplier.address.street }}</td>
+        <td class="px-5 py-3">{{ supplier.address.number }}</td>
+        <td class="px-5 py-3">{{ supplier.address.complement }}</td>
+        <td class="px-5 py-3">{{ supplier.address.city }}</td>
+        <td class="px-5 py-3">{{ supplier.address.state }}</td>
         <td>
                     <button
                      (click)="openModalEdit(supplier)" 
